@@ -1,7 +1,7 @@
 
-# Project: Expense Tracker - Installment 3
+# Project: Expense Tracker - Installment 4
 # Author: Danilo Ehmiel C. Esmeralda
-# Description: Calculates expenses, tax, and budget.
+# Description: Calculates expenses and makes budget decisions.
 
 print("=" * 40)
 
@@ -25,9 +25,30 @@ item1 = input("First expense? ")
 amount1 = float(input("Amount? "))
 subtotal = subtotal + amount1
 
+if amount1 > 200:
+    print("  Huge expense - are you sure?")
+elif amount1 > 100:
+    print("  Big expense.")
+elif amount1 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
 subtotal = subtotal + amount2
+
+if amount2 > 200:
+    print("  Huge expense - are you sure?")
+elif amount2 > 100:
+    print("  Big expense.")
+elif amount2 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
+if amount1 > 100 and amount2 > 100:
+    print("  Two big expenses in a row - slow down!")
 
 average = subtotal / 2
 
@@ -37,7 +58,6 @@ total = subtotal + tax
 
 budget = float(input("Your budget? "))
 over_budget = total > budget
-left = budget - total
 
 print("-" * 40)
 print("SUMMARY")
@@ -47,8 +67,14 @@ print(f"Subtotal:\t${subtotal}")
 print(f"Average:\t${average}")
 print(f"Tax ({float(tax_percent)}%):\t${tax}")
 print(f"Grand total:\t${total}")
-print(f"Over budget?\t{over_budget}")
-print(f"Left in budget:\t${left}")
+
+if over_budget:
+    print(f"Over budget by ${total - budget}!")
+elif total > budget * 0.90:
+    print(f"Careful: only ${budget - total} left.")
+else:
+    print(f"Within budget. ${budget - total} left.")
+
 print("-" * 40)
 
-print(f"Made by: Danilo Ehmiel C. Esmeralda | Installment 3")
+print(f"Made by: Danilo Esmeralda | Installment 4")
